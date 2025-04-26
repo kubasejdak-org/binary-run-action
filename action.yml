@@ -8,8 +8,11 @@ inputs:
   artifact:
     description: Artifact to download
     required: true
-  cmdArgs:
-    description: Cmomand line arguments passed to the binary
+  artifactSuffix:
+    description: Suffix appended to the artifact name
+    required: false
+  runArgs:
+    description: Command line arguments passed to the binary
     required: false
   runEnv:
     description: Environment variables to set for the binary
@@ -20,9 +23,9 @@ runs:
   steps:
     - uses: actions/download-artifact@v4
       with:
-        name: build-${{ inputs.artifact }}
+        name: build-${{ inputs.artifact }}${{ inputs.artifactSuffix }}
     - name: run binary
       shell: bash
       run: |
         chmod +x ${{ inputs.binary }}
-        ${{ inputs.runEnv }} ./${{ inputs.binary }} ${{ inputs.cmdArgs }}
+        ${{ inputs.runEnv }} ./${{ inputs.binary }} ${{ inputs.runArgs }}
