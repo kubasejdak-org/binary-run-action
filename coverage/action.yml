@@ -25,7 +25,7 @@ runs:
       with:
         binary: ${{ inputs.binary }}
         artifact: ${{ inputs.artifact }}
-        artifactSuffix: ${{ inputs.artifactSuffix }}
+        artifactSuffix: -coverage${{ inputs.artifactSuffix }}
         runArgs: ${{ inputs.runArgs }}
         runEnv: ${{ inputs.runEnv }}
     - name: Upload coverage
