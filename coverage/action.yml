@@ -32,4 +32,4 @@ runs:
       uses: actions/upload-artifact@v4
       with:
         name: gcda-${{ inputs.artifact }}${{ inputs.artifactSuffix }}
-        path: "**/*.gcda"
+        path: ${{ github.workspace }}/**/*.gcda
