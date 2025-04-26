@@ -23,7 +23,7 @@ runs:
   steps:
     - uses: kubasejdak-org/binary-run-action@main
       with:
-        binary: ${{ inputs.binary }}
+        binary: bin/${{ inputs.binary }}
         artifact: ${{ inputs.artifact }}
         artifactSuffix: -coverage${{ inputs.artifactSuffix }}
         runArgs: ${{ inputs.runArgs }}
