@@ -21,6 +21,13 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: Show files
+      shell: bash
+      run: |
+        echo "FILES:"
+        pwd
+        echo ${{ github.workspace }}
+        ls -al
     - uses: kubasejdak-org/binary-run-action@main
       with:
         binary: bin/${{ inputs.binary }}
@@ -28,6 +35,12 @@ runs:
         artifactSuffix: -coverage${{ inputs.artifactSuffix }}
         runArgs: ${{ inputs.runArgs }}
         runEnv: ${{ inputs.runEnv }}
+    - name: Search for .gcda files
+      shell: bash
+      run: find . -name "*.gcda"
+    - name: Search for .gcno files
+      shell: bash
+      run: find . -name "*.gcno"
     - name: Upload coverage
       uses: actions/upload-artifact@v4
       with:
