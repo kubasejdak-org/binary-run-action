@@ -33,5 +33,5 @@ runs:
       with:
         name: coverage-${{ inputs.binary }}
         path: |
-          ${{ github.workspace }}/**/*.gcno
-          ${{ github.workspace }}/**/*.gcda
+          ${{ inputs.artifact }}/**/*.gcno
+          build/**/*.gcda
