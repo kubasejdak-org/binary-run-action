@@ -33,6 +33,12 @@ runs:
     - name: Run binary
       shell: bash
       run: |
+        echo "+++ DEBUG +++"
+        pwd
+        ls -al
+        echo "+++ END DEBUG +++"
+
+
         chmod +x ${{ inputs.binary }}
 
         if [ -n "${{ inputs.workdir }}" ]; then
