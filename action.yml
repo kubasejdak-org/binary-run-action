@@ -2,13 +2,13 @@ name: Run binary
 description: Run binary
 
 inputs:
-  binary:
-    description: Binary to run
-    required: true
-
   artifact:
     description: Artifact to download
     required: false
+
+  binary:
+    description: Binary to run
+    required: true  
 
   runArgs:
     description: Command line arguments passed to the binary
@@ -16,6 +16,10 @@ inputs:
 
   runEnv:
     description: Environment variables to set for the binary
+    required: false
+
+  workdir:
+    description: Working directory to run the binary in
     required: false
 
 runs:
@@ -31,5 +35,9 @@ runs:
       run: |
         chmod +x ${{ inputs.binary }}
 
-        echo "Running: ${{ inputs.runEnv }} ./${{ inputs.binary }} ${{ inputs.runArgs }}"
-        ${{ inputs.runEnv }} ./${{ inputs.binary }} ${{ inputs.runArgs }}
+        if [ -n "${{ inputs.workdir }}" ]; then
+          cd ${{ inputs.workdir }}
+        fi
+
+        echo "Running: ${{ inputs.runEnv }} ${{ inputs.binary }} ${{ inputs.runArgs }}"
+        ${{ inputs.runEnv }} ${{ inputs.binary }} ${{ inputs.runArgs }}
