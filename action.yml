@@ -26,8 +26,10 @@ runs:
       with:
         name: ${{ inputs.artifact }}
 
-    - name: run binary
+    - name: Run binary
       shell: bash
       run: |
         chmod +x ${{ inputs.binary }}
+
+        echo "Running: ${{ inputs.runEnv }} ./${{ inputs.binary }} ${{ inputs.runArgs }}"
         ${{ inputs.runEnv }} ./${{ inputs.binary }} ${{ inputs.runArgs }}
