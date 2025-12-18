@@ -33,17 +33,11 @@ runs:
     - name: Run binary
       shell: bash
       run: |
-        echo "+++ DEBUG +++"
-        pwd
-        ls -al
-        echo "+++ END DEBUG +++"
-
-
-        chmod +x ${{ inputs.binary }}
-
         if [ -n "${{ inputs.workdir }}" ]; then
           cd ${{ inputs.workdir }}
         fi
+
+        chmod +x ${{ inputs.binary }}
 
         echo "Running: ${{ inputs.runEnv }} ${{ inputs.binary }} ${{ inputs.runArgs }}"
         ${{ inputs.runEnv }} ${{ inputs.binary }} ${{ inputs.runArgs }}
