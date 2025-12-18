@@ -8,7 +8,7 @@ inputs:
 
   artifact:
     description: Artifact to download
-    required: true
+    required: false
 
   runArgs:
     description: Command line arguments passed to the binary
@@ -21,9 +21,10 @@ inputs:
 runs:
   using: composite
   steps:
-    - uses: actions/download-artifact@v4
+    - uses: actions/download-artifact@v6
+      if: ${{ inputs.artifact != '' }}
       with:
-        name: build-${{ inputs.artifact }}
+        name: ${{ inputs.artifact }}
 
     - name: run binary
       shell: bash
