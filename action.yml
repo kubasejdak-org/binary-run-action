@@ -10,11 +10,11 @@ inputs:
     description: Binary to run
     required: true  
 
-  runArgs:
+  run-args:
     description: Command line arguments passed to the binary
     required: false
 
-  runEnv:
+  run-env:
     description: Environment variables to set for the binary
     required: false
 
@@ -39,5 +39,5 @@ runs:
 
         chmod +x ${{ inputs.binary }}
 
-        echo "Running: ${{ inputs.runEnv }} ${{ inputs.binary }} ${{ inputs.runArgs }}"
-        ${{ inputs.runEnv }} ${{ inputs.binary }} ${{ inputs.runArgs }}
+        echo "Running: ${{ inputs.run-env }} ${{ inputs.binary }} ${{ inputs.run-args }}"
+        ${{ inputs.run-env }} ${{ inputs.binary }} ${{ inputs.run-args }}
