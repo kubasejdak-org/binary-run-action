@@ -37,7 +37,7 @@ runs:
           cd ${{ inputs.workdir }}
         fi
 
-        chmod +x ${{ inputs.binary }}
+        chmod +x ./${{ inputs.binary }}
 
-        echo "Running: ${{ inputs.run-env }} ${{ inputs.binary }} ${{ inputs.run-args }}"
-        ${{ inputs.run-env }} ${{ inputs.binary }} ${{ inputs.run-args }}
+        echo "Running: ${{ inputs.run-env }} ./${{ inputs.binary }} ${{ inputs.run-args }}"
+        ${{ inputs.run-env }} ./${{ inputs.binary }} ${{ inputs.run-args }}
